@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>汉语小课堂 · Китайский для начинающих</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@600;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#faf6ef; --ink:#1c1a17; --ink2:#5c554b; --line:#e5ddcf;
+  --red:#c0392b; --red-soft:#f6e3df; --gold:#b8860b; --jade:#2e7d5b;
+  --card:#ffffff; --shadow:0 10px 30px rgba(28,26,23,.08);
+  --r:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6}
+.zh{font-family:'Noto Serif SC','Manrope',serif}
+.container{max-width:1080px;margin:0 auto;padding:0 24px}
+a{text-decoration:none;color:inherit}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:50;background:rgba(250,246,239,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:20px;height:64px;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;white-space:nowrap}
+.logo .seal{width:34px;height:34px;background:var(--red);color:#fff;border-radius:8px;display:grid;place-items:center;font-size:18px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.35)}
+.nav a{font-size:14px;font-weight:600;color:var(--ink2);padding:6px 12px;border-radius:999px;transition:.2s;white-space:nowrap}
+.nav a:hover{background:var(--red-soft);color:var(--red)}
+
+/* ---------- hero ---------- */
+.hero{padding:96px 0 72px;position:relative;overflow:hidden}
+.hero .container{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}
+.kicker{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red);background:var(--red-soft);padding:6px 14px;border-radius:999px;margin-bottom:20px}
+.hero h1{font-size:clamp(34px,5vw,56px);line-height:1.12;font-weight:800;letter-spacing:-.01em;margin-bottom:18px}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero p{color:var(--ink2);font-size:17px;max-width:46ch;margin-bottom:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--paper);font-weight:700;font-size:15px;padding:13px 26px;border-radius:999px;transition:.2s;border:none;cursor:pointer}
+.btn:hover{background:var(--red);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn.ghost:hover{border-color:var(--red);color:var(--red);background:transparent}
+.hero-card{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:32px;text-align:center;transform:rotate(2deg)}
+.hero-card .big{font-size:88px;font-weight:900;color:var(--red);line-height:1.1}
+.hero-card .py{color:var(--ink2);font-size:15px;margin:8px 0 4px}
+.hero-card .ru{font-weight:700;font-size:18px}
+.hero-card hr{border:none;border-top:1px dashed var(--line);margin:20px 0}
+.hero-card .row3{display:flex;justify-content:center;gap:24px}
+.hero-card .row3 div{text-align:center}
+.hero-card .row3 .zh{font-size:30px;font-weight:600}
+.hero-card .row3 span{display:block;font-size:12px;color:var(--ink2)}
+.hero::before{content:"学";position:absolute;right:-40px;top:-40px;font-family:'Noto Serif SC',serif;font-size:380px;font-weight:900;color:rgba(192,57,43,.05);pointer-events:none}
+
+/* ---------- sections ---------- */
+section{padding:72px 0}
+.sec-head{margin-bottom:36px}
+.sec-head .tag{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.sec-head h2{font-size:32px;font-weight:800;margin:6px 0 8px}
+.sec-head p{color:var(--ink2);max-width:64ch}
+.review{background:linear-gradient(180deg,#f4eee2, var(--paper));border-top:1px solid var(--line)}
+
+/* ---------- cards ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.card{perspective:900px;height:150px;border:none;background:transparent;cursor:pointer;padding:0;text-align:center;font-family:inherit}
+.ci{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+.card.flip .ci{transform:rotateY(180deg)}
+.cf,.cb{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--r);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:10px}
+.cf{background:var(--card);border:1px solid var(--line);box-shadow:0 4px 14px rgba(28,26,23,.05)}
+.cf:hover{border-color:var(--red);transform:translateY(-3px);transition:.2s}
+.cb{transform:rotateY(180deg);background:var(--ink);color:var(--paper)}
+.hz{font-size:38px;font-weight:600;font-family:'Noto Serif SC',serif;line-height:1.15}
+.num{font-size:11px;color:#b3a891}
+.py{font-size:15px;color:#d8cfc0}
+.cb .ru{font-size:15px;font-weight:700}
+.cf .ru{font-size:13px;color:var(--ink2)}
+
+/* ---------- patterns ---------- */
+.pats{margin-top:32px;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
+.pats h3{padding:16px 24px;font-size:15px;font-weight:800;letter-spacing:.04em;border-bottom:1px solid var(--line);background:#fdfaf4;display:flex;align-items:center;gap:10px}
+.pats h3::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--red)}
+.pat{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;padding:14px 24px;border-bottom:1px solid var(--line);transition:.15s}
+.pat:last-child{border-bottom:none}
+.pat:hover{background:#fdfaf4}
+.s{font-size:20px;font-weight:600;font-family:'Noto Serif SC',serif}
+.s small{display:block;font-family:'Manrope',sans-serif;font-size:13px;color:var(--ink2);font-weight:500}
+.s2{font-size:14px;color:var(--ink2)}
+
+/* ---------- grammar ---------- */
+.new-sec{background:var(--ink);color:#f3efe7}
+.new-sec .sec-head .tag{color:#e8b04b}
+.new-sec .sec-head h2{color:#fff}
+.new-sec .sec-head p{color:#b9b2a5}
+.new-sec .cf{background:#26241f;border-color:#3a362f;color:#f3efe7}
+.new-sec .cf:hover{border-color:#e8b04b}
+.new-sec .cf .ru{color:#b9b2a5}
+.new-sec .cb{background:#c0392b;color:#fff}
+.new-sec .pats{background:#26241f;border-color:#3a362f;box-shadow:none}
+.new-sec .pats h3{background:#2d2b26;border-color:#3a362f;color:#f3efe7}
+.new-sec .pat{border-color:#3a362f}
+.new-sec .pat:hover{background:#2d2b26}
+.new-sec .s2{color:#b9b2a5}
+.new-sec .s small{color:#8f887b}
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:32px}
+.gbox{background:#26241f;border:1px solid #3a362f;border-radius:var(--r);padding:22px}
+.gbox h4{font-size:16px;font-weight:800;margin-bottom:8px;color:#fff}
+.gbox h4 .zh{color:#e8b04b;margin-right:8px}
+.gbox p{font-size:14px;color:#b9b2a5}
+.gbox code{font-family:ui-monospace,Menlo,monospace;font-size:13px;background:#1c1a17;border:1px solid #3a362f;padding:2px 8px;border-radius:6px;color:#f0d9a8}
+
+/* ---------- quiz ---------- */
+.quiz-wrap{max-width:720px;margin:0 auto}
+.q{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;margin-bottom:14px;box-shadow:0 4px 14px rgba(28,26,23,.04)}
+.q .qt{font-size:21px;font-weight:600;font-family:'Noto Serif SC',serif}
+.q .qp{font-size:13px;color:var(--ink2);margin:2px 0 12px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{border:1.5px solid var(--line);background:transparent;border-radius:12px;padding:10px 14px;text-align:left;font-family:inherit;font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;transition:.15s}
+.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt:disabled{cursor:default}
+.opt.ok{border-color:var(--jade);background:#e6f2ec;color:var(--jade)}
+.opt.bad{border-color:var(--red);background:var(--red-soft);color:var(--red)}
+.scorebar{display:flex;align-items:center;gap:16px;margin-bottom:24px;flex-wrap:wrap}
+.scorebar b{font-size:34px;font-weight:800;font-variant-numeric:tabular-nums}
+.result{display:none;text-align:center;padding:28px;background:var(--red-soft);border-radius:var(--r);margin-bottom:20px}
+.result.show{display:block}
+.result b{font-size:26px;color:var(--red)}
+.result p{color:var(--ink2);margin-top:6px}
+
+footer{border-top:1px solid var(--line);padding:32px 0;text-align:center;color:var(--ink2);font-size:14px}
+footer .zh{font-size:20px;color:var(--red);margin-bottom:6px}
+
+@media(max-width:820px){
+  .hero .container{grid-template-columns:1fr}
+  .hero-card{transform:none}
+  .opts{grid-template-columns:1fr}
+  .hero::before{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="logo" href="#top"><span class="seal zh">语</span>汉语小课堂</a>
+    <a href="#l1">Приветствия</a>
+    <a href="#l2">Имя и страна</a>
+    <a href="#l3">Дом</a>
+    <a href="#l4">Животные</a>
+    <a href="#l5">Урок · семья</a>
+    <a href="#quiz">Тест</a>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="container">
+    <div>
+      <span class="kicker">Урок китайского · HSK-старт</span>
+      <h1>Четыре темы на повторение<br>и один <em>новый урок</em> — семья</h1>
+      <p>Интерактивный урок-сайт: переворачивающиеся карточки со словами, образцы предложений, грамматика с 这 и 那 и итоговый тест из восьми вопросов.</p>
+      <a class="btn" href="#l1">Начать повторение</a>
+      <a class="btn ghost" href="#l5">Сразу к новому уроку</a>
+    </div>
+    <div class="hero-card">
+      <div class="big zh">家</div>
+      <div class="py">jiā</div>
+      <div class="ru">дом, семья</div>
+      <hr>
+      <div class="row3 zh">
+        <div><span class="zh">爸爸</span><span>bàba · папа</span></div>
+        <div><span class="zh">妈妈</span><span>māma · мама</span></div>
+        <div><span class="zh">哥哥</span><span>gēge · брат</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- УРОК 1 -->
+<section class="review" id="l1">
+  <div class="container">
+    <div class="sec-head">
+      <span class="tag">Повторение · урок 1</span>
+      <h2>Приветствия</h2>
+      <p>Нажмите на карточку, чтобы увидеть пиньинь и перевод.</p>
+    </div>
+    <div class="grid" data-cards='[["你","nǐ","ты"],["好","hǎo","хороший"],["你好","nǐ hǎo","привет"],["吗","ma","вопросит. частица"],["我","wǒ","я"],["很","hěn","очень"]]'></div>
+    <div class="pats"><h3>Образцы предложений</h3>
+      <div class="pat"><span class="s zh">你好！<small>Nǐ hǎo!</small></span><span class="s2">Привет!</span></div>
+      <div class="pat"><span class="s zh">你好吗？<small>Nǐ hǎo ma?</small></span><span class="s2">Как дела?</span></div>
+      <div class="pat"><span class="s zh">我很好。<small>Wǒ hěn hǎo.</small></span><span class="s2">У меня всё хорошо.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- УРОК 2 -->
+<section id="l2">
+  <div class="container">
+    <div class="sec-head">
+      <span class="tag">Повторение · урок 2</span>
+      <h2>Имя и страна</h2>
+      <p>Как спросить имя и откуда человек: 你叫什么？ · 你是哪国人？</p>
+    </div>
+    <div class="grid" data-cards='[["叫","jiào","звать(ся)"],["什么","shénme","что"],["是","shì","быть"],["哪","nǎ","какой"],["国","guó","страна"],["人","rén","человек"],["中国","Zhōngguó","Китай"],["英国","Yīngguó","Великобритания"],["美国","Měiguó","США"]]'></div>
+    <div class="pats"><h3>Образцы предложений</h3>
+      <div class="pat"><span class="s zh">你叫什么？<small>Nǐ jiào shénme?</small></span><span class="s2">Как тебя зовут?</span></div>
+      <div class="pat"><span class="s zh">我叫李小龙。<small>Wǒ jiào Lǐ Xiǎolóng.</small></span><span class="s2">Меня зовут Ли Сяолун.</span></div>
+      <div class="pat"><span class="s zh">你是哪国人？<small>Nǐ shì nǎ guó rén?</small></span><span class="s2">Ты из какой страны?</span></div>
+      <div class="pat"><span class="s zh">我是中国人。<small>Wǒ shì Zhōngguó rén.</small></span><span class="s2">Я китаец.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- УРОК 3 -->
+<section class="review" id="l3">
+  <div class="container">
+    <div class="sec-head">
+      <span class="tag">Повторение · урок 3</span>
+      <h2>Дом и города</h2>
+      <p>Глагол 在 — «находиться в», вопрос 在哪儿 — «где».</p>
+    </div>
+    <div class="grid" data-cards='[["家","jiā","дом"],["在","zài","находиться в"],["哪儿","nǎr","где"],["北京","Běijīng","Пекин"],["上海","Shànghǎi","Шанхай"],["香港","Xiānggǎng","Гонконг"],["他","tā","он"]]'></div>
+    <div class="pats"><h3>Образцы предложений</h3>
+      <div class="pat"><span class="s zh">你家在哪儿？<small>Nǐ jiā zài nǎr?</small></span><span class="s2">Где твой дом?</span></div>
+      <div class="pat"><span class="s zh">我家在北京。<small>Wǒ jiā zài Běijīng.</small></span><span class="s2">Мой дом в Пекине.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- УРОК 4 -->
+<section id="l4">
+  <div class="container">
+    <div class="sec-head">
+      <span class="tag">Повторение · урок 4</span>
+      <h2>Животные и числа</h2>
+      <p>Счётное слово 只 для животных; 两 — «два» перед существительным.</p>
+    </div>
+    <div class="grid" data-cards='[["有","yǒu","иметь"],["猫","māo","кот"],["狗","gǒu","собака"],["只","zhī","счётное слово"],["小","xiǎo","маленький"],["一","yī","один"],["二","èr","два"],["两","liǎng","два (с сущ.)"],["三","sān","три"],["四","sì","четыре"],["五","wǔ","пять"],["六","liù","шесть"]]'></div>
+    <div class="pats"><h3>Образцы предложений</h3>
+      <div class="pat"><span class="s zh">我有一只小猫。<small>Wǒ yǒu yì zhī xiǎo māo.</small></span><span class="s2">У меня есть один котёнок.</span></div>
+      <div class="pat"><span class="s zh">他有两只小狗。<small>Tā yǒu liǎng zhī xiǎo gǒu.</small></span><span class="s2">У него две собачки.</span></div>
+      <div class="pat"><span class="s zh">爸爸、妈妈有猫吗？<small>Bàba māma yǒu māo ma?</small></span><span class="s2">Есть ли у папы и мамы кот?</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- УРОК 5 -->
+<section class="new-sec" id="l5">
+  <div class="container">
+    <div class="sec-head">
+      <span class="tag">Новый урок · урок 5</span>
+      <h2>Семья · 这 и 那</h2>
+      <p>Указательные слова 这 «это» (близко) и 那 «то» (далеко), члены семьи и отрицание 不.</p>
+    </div>
+    <div class="grid" data-cards='[["这","zhè","это (близко)"],["那","nà","то (далеко)"],["爸爸","bàba","папа"],["妈妈","māma","мама"],["哥哥","gēge","старший брат"],["姐姐","jiějie","старшая сестра"],["不","bù","не; нет"]]'></div>
+    <div class="pats"><h3>Образцы предложений</h3>
+      <div class="pat"><span class="s zh">这是我爸爸。<small>Zhè shì wǒ bàba.</small></span><span class="s2">Это мой папа.</span></div>
+      <div class="pat"><span class="s zh">那是我妈妈。<small>Nà shì wǒ māma.</small></span><span class="s2">То моя мама.</span></div>
+      <div class="pat"><span class="s zh">这是我。<small>Zhè shì wǒ.</small></span><span class="s2">Это я.</span></div>
+      <div class="pat"><span class="s zh">那不是我爸爸。<small>Nà bú shì wǒ bàba.</small></span><span class="s2">То не мой папа.</span></div>
+      <div class="pat"><span class="s zh">这是你哥哥吗？<small>Zhè shì nǐ gēge ma?</small></span><span class="s2">Это твой старший брат?</span></div>
+      <div class="pat"><span class="s zh">他是英国人吗？<small>Tā shì Yīngguó rén ma?</small></span><span class="s2">Он англичанин?</span></div>
+    </div>
+    <div class="gram">
+      <div class="gbox">
+        <h4><span class="zh">这 / 那</span>Указание на предмет</h4>
+        <p>Конструкция <code>这 / 那 + 是 + …</code>: 这是我爸爸 — «это мой папа». 这 указывает на близкий предмет, 那 — на дальний.</p>
+      </div>
+      <div class="gbox">
+        <h4><span class="zh">不</span>Отрицание</h4>
+        <p>Частица <code>不</code> ставится перед глаголом 是: 那不是我爸爸. Помните: <code>bù shì</code> читается «бу ши» — тон меняется перед 4-м тоном.</p>
+      </div>
+      <div class="gbox">
+        <h4><span class="zh">吗</span>Вопрос</h4>
+        <p>Без вопросительного слова вопрос строится добавлением <code>吗</code> в конец: 他是英国人吗？ Ответ: 是，他是。 / 不，他不是。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ТЕСТ -->
+<section class="review" id="quiz">
+  <div class="container">
+    <div class="sec-head" style="text-align:center">
+      <span class="tag">Итоговый тест</span>
+      <h2>Проверь себя</h2>
+      <p style="margin:0 auto">Восемь вопросов по всем пяти урокам.</p>
+    </div>
+    <div class="quiz-wrap">
+      <div class="scorebar">
+        <b id="score">0 / 8</b>
+        <button class="btn" id="restart" style="padding:9px 20px;font-size:14px">Начать заново</button>
+      </div>
+      <div class="result" id="result"><b id="resultScore"></b><p id="resultText"></p></div>
+      <div id="quiz"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="zh">好好学习，天天向上</div>
+  <p>Учи усердно — и каждый день станешь лучше · 汉语小课堂</p>
+</footer>
+
+<script>
+document.querySelectorAll(".grid").forEach(function(g){
+  JSON.parse(g.dataset.cards).forEach(function(w,i){
+    var c=document.createElement("button");
+    c.className="card";
+    c.innerHTML='<div class="ci"><div class="cf"><span class="num">'+(i+1)+'</span><span class="hz zh">'+w[0]+'</span><span class="ru">'+w[2]+'</span></div><div class="cb"><span class="py">'+w[1]+'</span><span class="ru">'+w[2]+'</span></div></div>';
+    c.onclick=function(){c.classList.toggle("flip")};
+    g.appendChild(c);
+  });
+});
+
+var quiz=[
+ {q:"你好！",p:"Nǐ hǎo!",o:["Как дела?","Привет!","Спасибо!","До свидания!"],a:1},
+ {q:"你是哪国人？",p:"Nǐ shì nǎ guó rén?",o:["Как тебя зовут?","Где твой дом?","Ты из какой страны?","Сколько тебе лет?"],a:2},
+ {q:"我家在北京。",p:"Wǒ jiā zài Běijīng.",o:["Мой дом в Пекине.","Я живу в Шанхае.","Я из Пекина.","Мой дом большой."],a:0},
+ {q:"他有两只小狗。",p:"Tā yǒu liǎng zhī xiǎo gǒu.",o:["У него один кот.","У него две собачки.","У неё три кота.","Он любит собак."],a:1},
+ {q:"那 是什么意思？",p:"nà",o:["это (близко)","не; нет","то (далеко)","очень"],a:2},
+ {q:"这是我妈妈。",p:"Zhè shì wǒ māma.",o:["То мой папа.","Это моя мама.","Это мой брат.","То не моя мама."],a:1},
+ {q:"那不是我爸爸。",p:"Nà bú shì wǒ bàba.",o:["Это мой папа.","То мой папа.","То не мой папа.","Это не моя мама."],a:2},
+ {q:"他是英国人吗？",p:"Tā shì Yīngguó rén ma?",o:["Он англичанин.","Он не англичанин.","Где он живёт?","Он англичанин?"],a:3}
+];
+var score=0,answered=0;
+var quizEl=document.getElementById("quiz"),scoreEl=document.getElementById("score");
+function render(){
+  score=0;answered=0;scoreEl.textContent="0 / 8";
+  document.getElementById("result").classList.remove("show");
+  quizEl.innerHTML="";
+  quiz.forEach(function(item,qi){
+    var d=document.createElement("div");d.className="q";
+    var h='<div class="qt zh">'+item.q+'</div><div class="qp">'+item.p+'</div><div class="opts">';
+    item.o.forEach(function(opt,oi){h+='<button class="opt" data-q="'+qi+'" data-o="'+oi+'">'+opt+'</button>'});
+    d.innerHTML=h+'</div>';quizEl.appendChild(d);
+  });
+  quizEl.querySelectorAll(".opt").forEach(function(btn){
+    btn.onclick=function(){
+      var qEl=btn.closest(".q");if(qEl.dataset.done)return;qEl.dataset.done="1";
+      var qi=+btn.dataset.q,oi=+btn.dataset.o;answered++;
+      qEl.querySelectorAll(".opt").forEach(function(b){b.disabled=true;if(+b.dataset.o===quiz[qi].a)b.classList.add("ok")});
+      if(oi===quiz[qi].a){score++}else{btn.classList.add("bad")}
+      scoreEl.textContent=score+" / 8";
+      if(answered===quiz.length){
+        var r=document.getElementById("result");
+        document.getElementById("resultScore").textContent=score+" из 8";
+        var t=document.getElementById("resultText");
+        t.textContent = score===8?"Отлично! Все темы усвоены.":score>=6?"Хорошо! Ещё немного — и будет идеально.":"Стоит вернуться и повторить карточки.";
+        r.classList.add("show");
+        r.scrollIntoView({behavior:"smooth",block:"center"});
+      }
+    };
+  });
+}
+document.getElementById("restart").onclick=render;
+render();
+</script>
+</body>
+</html>
